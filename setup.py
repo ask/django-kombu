@@ -23,15 +23,6 @@ if root_dir != '':
 src_dir = "djkombu"
 
 install_requires = []
-# Required for couchdb backend
-if sys.version_info < (2, 5):
-    install_requires.append("uuid")
-
-# We rely on a sorted dictionary implementation and use either Python's
-# built-in OrderedDict or the odict module.
-if sys.version_info < (2, 7):
-    install_requires.append("odict")
-
 
 def osx_install_data(install_data):
 
