@@ -96,7 +96,7 @@ for dirpath, dirnames, filenames in os.walk(src_dir):
                 filenames]])
 
 setup(
-    name='djkombu',
+    name='django-kombu',
     version=djkombu.__version__,
     description=djkombu.__doc__,
     author=djkombu.__author__,
