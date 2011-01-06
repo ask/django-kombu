@@ -30,9 +30,8 @@ class Channel(virtual.Channel):
         return Queue.objects.purge(queue)
 
     def refresh_connection(self):
-        from django.db import connections
-        for connection in connections.all():
-            connection.close()
+        from django import db
+        db.close_connection()
 
 
 class DatabaseTransport(virtual.Transport):
