@@ -6,6 +6,20 @@ t================
 =====
 :release-date: 2011-02-28 16:0 A.M CEST
 
+* Old messages are now automatically deleted.
+
+    Finally a fix for infamous issue #2
+    (https://github.com/ask/ghettoq/issues#issue/2)
+
+    The cleanup is run for every 10 messages received.
+
+    If you did not already manually clean processed messages,
+    then this cleanup may take a very long time, so you are encouraged
+    to do this manually the first time by running the ``clean_kombu_messages``
+    management command::
+
+        $ python manage.py clean_kombu_messages
+
 * Default polling interval is now 5 seconds.
 
     This is the time to sleep between SELECTs when there are no messages
@@ -17,7 +31,4 @@ t================
     longer for a task to be processed.  If this is not acceptable to your
     needs you should increase the polling interval accordingly.
 
-* Old messages are now automatically deleted.
-
-    The cleanup is run for every 10 messages received.
 
