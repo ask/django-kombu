@@ -12,6 +12,11 @@ t================
     in any of the queues being consumed from.  The default value of 5.0 seconds
     can be changed by the ``DJKOMBU_POLLING_INTERVAL`` setting.
 
+    Previously it would issue 10 selects a second, so this will result in
+    considerably less CPU usage, but also it means that it can take a lot
+    longer for a task to be processed.  If this is not acceptable to your
+    needs you should increase the polling interval accordingly.
+
 * Old messages are now automatically deleted.
 
     The cleanup is run for every 10 messages received.
