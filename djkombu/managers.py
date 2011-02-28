@@ -1,6 +1,11 @@
 # Partially stolen from Django Queue Service
 # (http://code.google.com/p/django-queue-service)
-from django.db import models
+from django.conf import settings
+from django.db import transaction, connection, models
+try:
+    from django.db import connections, router
+except ImportError:  # pre-Django 1.2
+    connections = router = None
 
 
 class QueueManager(models.Manager):
@@ -33,6 +38,8 @@ class QueueManager(models.Manager):
 
 
 class MessageManager(models.Manager):
+    messages_received = 0
+    cleanup_every = 10
 
     def pop(self):
         try:
@@ -40,9 +47,22 @@ class MessageManager(models.Manager):
             result = resultset[0:1].get()
             result.visible = False
             result.save()
+            if not self.messages_received % self.cleanup_every:
+                self.cleanup()
             return result.payload
         except self.model.DoesNotExist:
             pass
 
     def cleanup(self):
         self.filter(visible=False).delete()
+
+    def cleanup(self):
+        cursor = self.connection_for_write().cursor()
+        cursor.execute("DELETE FROM %s WHERE visible=%%s" % (
+                        self.model._meta.db_table, ), (False, ))
+        transaction.commit_unless_managed()
+
+    def connection_for_write(self):
+        if connections:
+            return connections[router.db_for_write(self.model)]
+        return connection
