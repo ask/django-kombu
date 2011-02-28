@@ -38,7 +38,7 @@ class QueueManager(models.Manager):
 
 
 class MessageManager(models.Manager):
-    messages_received = 0
+    _messages_received = [0]
     cleanup_every = 10
 
     def pop(self):
@@ -47,7 +47,9 @@ class MessageManager(models.Manager):
             result = resultset[0:1].get()
             result.visible = False
             result.save()
-            if not self.messages_received % self.cleanup_every:
+            recv = self.__class__._messages_received
+            recv[0] += 1
+            if not recv[0] % self.cleanup_every:
                 self.cleanup()
             return result.payload
         except self.model.DoesNotExist:
