@@ -24,6 +24,7 @@ src_dir = "djkombu"
 
 install_requires = []
 
+
 def osx_install_data(install_data):
 
     def finalize_options(self):
@@ -106,7 +107,7 @@ setup(
     license='BSD',
     packages=packages,
     data_files=data_files,
-    cmdclass = {"test": RunTests},
+    cmdclass={"test": RunTests},
     zip_safe=False,
     test_suite="nose.collector",
     install_requires=install_requires,
