@@ -26,7 +26,7 @@ class Channel(virtual.Channel):
         super(Channel, self).basic_consume(queue, *args, **kwargs)
 
     def _get(self, queue):
-        self.refresh_connection()
+        #self.refresh_connection()
         m = Queue.objects.fetch(queue)
         if m:
             return deserialize(m)
