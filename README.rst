@@ -2,7 +2,7 @@
 django-kombu - Kombu transport using the Django database.
 =========================================================
 
-:version: 0.9.2
+:version: 0.9.3
 
 Introduction
 ============

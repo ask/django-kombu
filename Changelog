@@ -1,10 +1,16 @@
-t================
+================
  Change history
 ================
 
+0.9.3
+=====
+:release-date: 2011-08-01 16:00 A.M CEST
+
+* Now works with Kombu 1.2.1.
+
 0.9.2
 =====
-:release-date: 2011-02-28 16:0 A.M CEST
+:release-date: 2011-02-28 16:00 A.M CEST
 
 * Old messages are now automatically deleted.
 
