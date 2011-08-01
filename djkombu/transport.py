@@ -20,7 +20,8 @@ class Channel(virtual.Channel):
         Queue.objects.publish(queue, serialize(message))
 
     def basic_consume(self, queue, *args, **kwargs):
-        exchange, _ , _ = self.state.bindings[queue]
+        qinfo = self.state.bindings[queue]
+        exchange = qinfo[0]
         if self.typeof(exchange).type == "fanout":
             return
         super(Channel, self).basic_consume(queue, *args, **kwargs)
