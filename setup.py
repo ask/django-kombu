@@ -96,6 +96,11 @@ for dirpath, dirnames, filenames in os.walk(src_dir):
             data_files.append([dirpath, [os.path.join(dirpath, f) for f in
                 filenames]])
 
+if os.path.exists("README.rst"):
+    long_description = codecs.open("README.rst", "r", "utf-8").read()
+else:
+    long_description = "See http://pypi.python.org/pypi/django-kombu"
+
 setup(
     name='django-kombu',
     version=djkombu.__version__,
@@ -118,5 +123,5 @@ setup(
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    long_description=codecs.open('README.rst', "r", "utf-8").read(),
+    long_description=long_description,
 )
