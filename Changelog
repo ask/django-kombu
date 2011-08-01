@@ -2,6 +2,13 @@
  Change history
 ================
 
+0.9.4
+=====
+:release-date: 2011-08-01 16:00 A.M CEST
+
+* Fixed distribution installation problems if README.rst
+  could not be found.
+
 0.9.3
 =====
 :release-date: 2011-08-01 16:00 A.M CEST
