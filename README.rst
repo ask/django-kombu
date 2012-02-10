@@ -4,6 +4,25 @@ django-kombu - Kombu transport using the Django database.
 
 :version: 0.9.4
 
+Deprecated
+==========
+
+django-kombu has now moved into Kombu core, so this repository
+is no longer in use.
+
+To upgrade, install the latest Kombu version and add the following
+to your settings.py::
+
+    INSTALLED_APPS = (
+        "kombu.transport.django",
+    )
+
+You can remove the previous "djkombu" entry.
+
+
+**ORIGINAL README BELOW**
+
+
 Introduction
 ============
 
